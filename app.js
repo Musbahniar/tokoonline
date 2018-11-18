@@ -43,6 +43,8 @@ app.listen(port, function() {
 
 //Set Router
 var pages = require('./routes/pages.js');
+var adminPages = require('./routes/admin_pages.js');
 
 // Redirect setup links
 app.use('/', pages);
+app.use('/admin/pages', adminPages);
