@@ -17,11 +17,22 @@ app.use(express.static(path.join(__dirname,'public')));
 mongoose.connect(config.database);
 var db = mongoose.connection;
 // mongoose.connect('mongodb://localhost/toko-onlinesalah');
-db.on('error', console.error.bind(console, 'Connection Error:'));
+// db.on('error', console.error.bind(console, 'Connection Database Error:'));
 
+// If the connection throws an error
+db.on('error',function (err) {  
+    console.log('Mongoose default connection error: ' + err);
+  });
+
+//When the connection is connected
 db.once('open',function(){
-    console.log('Connection Open');
+    console.log('Koneksi Ke Database MongoDB Berhasil');
 })
+
+// When the connection is disconnected
+db.on('disconnected', function () {  
+    console.log('Mongoose default connection disconnected'); 
+  });
 
 
 //Set Server
