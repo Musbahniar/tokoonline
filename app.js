@@ -35,15 +35,14 @@ db.on('disconnected', function () {
   });
 
 
-//Set Server
+//Set Server NodeJS
 var port = 3000;
 app.listen(port, function() {
     console.log('Server running on port 3000');
 });
 
-app.get('/', function(req,res){
-    // res.send('Ini adalah Index');
-    res.render('index', {
-        title: 'Ganti Judul'
-    })
-});
+//Set Router
+var pages = require('./routes/pages.js');
+
+// Redirect setup links
+app.use('/', pages);
